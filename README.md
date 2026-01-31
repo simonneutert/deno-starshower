@@ -118,6 +118,11 @@ deno task dev
 - File permissions: the script writes to `deno-starshower_output/`; ensure the
   process has permission to create and write files in the repository directory.
 
+## Improvements
+
+- add throttling via
+  [octokit/plugin-throttling.js](https://github.com/octokit/plugin-throttling.js)
+
 ## Example
 
 Fetch starred repositories for user `octocat`:
