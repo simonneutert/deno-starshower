@@ -1,6 +1,6 @@
 // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 
-import { asyncfetchStarredRepos } from "./lib/client.ts";
+import { asyncfetchStarredRepos, createClient } from "./lib/client.ts";
 import { markdownHeader, starredReposToMarkdown } from "./lib/to-markdown.ts";
 
 export function groupReposByPushedYear<T extends { pushed_at: string }>(
@@ -32,7 +32,8 @@ if (import.meta.main) {
 
   const username = Deno.args[0];
   console.log("Loading starred repositories... please stand by.");
-  const data = await asyncfetchStarredRepos(username, true);
+  const client = createClient();
+  const data = await asyncfetchStarredRepos(client, username, true);
   Deno.mkdirSync("deno-starshower_output", { recursive: true });
   Deno.writeFileSync(
     "deno-starshower_output/Starred_Repos.json",
