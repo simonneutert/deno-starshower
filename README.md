@@ -29,6 +29,10 @@ responses. Import mappings are defined in `deno.json`.
   `public_repo` scope.\
   `GITHUB_STARSHOWER` is the preferred way.
 
+No clue what that token is, or how to set it up?\
+[Read GitHub Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens),
+or use your preferred search engine, to learn how to create yours.
+
 ## Setup
 
 1. Install Deno: follow instructions at https://deno.com.
