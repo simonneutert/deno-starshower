@@ -24,16 +24,18 @@ responses. Import mappings are defined in `deno.json`.
 ## Requirements
 
 - Deno (recent stable release with npm compatibility)
-- (Optional) a GitHub token to increase API rate limits. Set `GITHUB_TOKEN` or
-  `GH_PAT` in the environment. The token needs only `public_repo` scope.
+- A GitHub token to increase API rate limits. Set `GITHUB_STARSHOWER`,
+  `GITHUB_TOKEN` or `GH_PAT` in the environment. The token needs only
+  `public_repo` scope.\
+  `GITHUB_STARSHOWER` is the preferred way.
 
 ## Setup
 
 1. Install Deno: follow instructions at https://deno.com.
-2. (Optional) Export a GitHub token:
+2. Export a GitHub token:
 
 ```bash
-export GITHUB_TOKEN=your_token_here
+export GITHUB_STARSHOWER=your_token_here
 ```
 
 ## Usage
@@ -71,9 +73,10 @@ will create the directory if it does not exist.
 
 ## How it works (high level)
 
-- `lib/client.ts` creates an Octokit client (using `GITHUB_TOKEN` / `GH_PAT` if
-  provided) and uses `octokit.paginate` to fetch all starred repositories for a
-  user. The response is validated with the Zod schema in `types.ts`.
+- `lib/client.ts` creates an Octokit client (using `GITHUB_STARSHOWER`,
+  `GITHUB_TOKEN` or `GH_PAT` if provided) and uses `octokit.paginate` to fetch
+  all starred repositories for a user. The response is validated with the Zod
+  schema in `types.ts`.
 - `lib/to-markdown.ts` transforms validated repository objects into Markdown
   sections grouped by year.
 - `main.ts` orchestrates the process: it fetches data, writes the JSON file,
@@ -103,8 +106,8 @@ deno task dev
 
 ## Configuration and troubleshooting
 
-- Environment token: set `GITHUB_TOKEN` or `GH_PAT` to increase rate limits and
-  avoid authentication errors.
+- Environment token: set `GITHUB_STARSHOWER`, `GITHUB_TOKEN` or `GH_PAT` to
+  increase rate limits and avoid authentication errors.
 - Deno npm compatibility: this project references npm packages via Deno's import
   maps in `deno.json`. Ensure your Deno version supports the used
   interoperability.
