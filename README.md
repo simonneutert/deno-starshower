@@ -13,9 +13,18 @@ produces two outputs:
 The project uses `@octokit/rest` to fetch data and `zod` to validate the
 responses. Import mappings are defined in `deno.json`.
 
+👉️ See the Sample Output [here](./public/Sample_Starred_Repos.md). 👈️
+
+👉️ And the JSON [here](./public/Sample_Starred_Repos.json). 👈️
+
 ---
 
-👉️ See the Sample Output [here](./public/Sample_Starred_Repos.md). 👈️
+I run this repo in a GitHub action to auto-update my
+[bridgetown](https://www.bridgetownrb.com/) based personal website, hosted on
+GitHub.\
+Visit my
+[GitHub Action yaml](https://github.com/simonneutert/simonneutert.github.io/blob/main/.github/workflows/deno-starshower.yml)
+for some inspiration.
 
 ---
 
