@@ -94,7 +94,7 @@ will create the directory if it does not exist.
   `GITHUB_TOKEN` or `GH_PAT` if provided) and uses `octokit.paginate` to fetch
   all starred repositories for a user. The response is validated with the Zod
   schema in `types.ts`.
-- `lib/to-markdown.ts` transforms validated repository objects into Markdown
+- `lib/repo-to-markdown.ts` transforms validated repository objects into Markdown
   sections grouped by year.
 - `main.ts` orchestrates the process: it fetches data, writes the JSON file,
   groups repositories by year, and writes the Markdown report.
@@ -107,17 +107,11 @@ will create the directory if it does not exist.
 deno test
 ```
 
-- Run in watch mode:
-
-```bash
-deno task dev
-```
-
 ## Files of interest
 
 - `main.ts` — program entry and orchestration
 - `lib/client.ts` — GitHub API client and pagination
-- `lib/to-markdown.ts` — Markdown rendering helpers
+- `lib/repo-to-markdown.ts` — Markdown rendering helpers
 - `types.ts` — Zod schemas and TypeScript interfaces
 - `deno.json` — task and import mappings
 
