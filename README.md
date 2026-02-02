@@ -74,13 +74,9 @@ run:
 
 ```bash
 chmod +x deno-starshower_<version>
+
 ./deno-starshower_<version> <github_username>
 ```
-
-Notes:
-
-- The project includes a `dev` task in `deno.json` that runs the script with
-  file watching enabled. Use `deno task dev` to run in watch mode.
 
 ## Outputs
 
