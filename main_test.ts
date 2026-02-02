@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { groupReposByPushedYear } from "./main.ts";
+import { reposGroupByPushedToInYear } from "./lib/repos-group-by-pushed-to-in-year.ts";
 
 export const sampleRepo = {
   id: 197249796,
@@ -137,9 +137,9 @@ export const sampleRepo = {
 };
 
 Deno.test(function groupReposByPushedYearTest() {
-  groupReposByPushedYear([sampleRepo]);
+  reposGroupByPushedToInYear([sampleRepo]);
   assertEquals(
-    groupReposByPushedYear([sampleRepo]),
+    reposGroupByPushedToInYear([sampleRepo]),
     {
       "2026": [sampleRepo],
     },
