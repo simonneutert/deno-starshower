@@ -1,21 +1,13 @@
 // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 
 import { asyncfetchStarredRepos, createClient } from "./lib/client.ts";
-import { markdownHeader, starredReposToMarkdown } from "./lib/to-markdown.ts";
+import { reposGroupByPushedToInYear } from "./lib/repos-group-by-pushed-to-in-year.ts";
+import {
+  markdownGroupedByYearHeaderTitle,
+  starredReposToMarkdownGroupedByYear,
+} from "./lib/to-markdown-grouped-by-year.ts";
 
-export function groupReposByPushedYear<T extends { pushed_at: string }>(
-  repos: T[],
-): Record<string, T[]> {
-  const byYear: Record<string, T[]> = {};
-  for (const repo of repos) {
-    const year = new Date(repo.pushed_at).getFullYear().toString();
-    if (!byYear[year]) byYear[year] = [];
-    byYear[year].push(repo);
-  }
-
-  return byYear;
-}
-
+// If this module is the main module, run the script:
 if (import.meta.main) {
   if (Deno.args.length < 1) {
     console.error(
@@ -42,8 +34,8 @@ if (import.meta.main) {
     ),
   );
   console.log("Starred_Repos.json has been generated.");
-  const dataByYear = groupReposByPushedYear(data);
-  let text = markdownHeader(username);
+  const dataByYear = reposGroupByPushedToInYear(data);
+  let text = markdownGroupedByYearHeaderTitle(username);
   const years = Object.keys(dataByYear).map(Number).sort((a, b) => b - a);
 
   if (years.length > 1) {
@@ -56,7 +48,7 @@ if (import.meta.main) {
   }
 
   for (const year of years) {
-    text += starredReposToMarkdown(
+    text += starredReposToMarkdownGroupedByYear(
       year.toString(),
       dataByYear[year.toString()],
     );
