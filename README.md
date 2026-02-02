@@ -56,6 +56,14 @@ export GITHUB_STARSHOWER=your_token_here
 Run the script with a GitHub username (omit the `@` sign). The script requires
 permissions to access the network, read environment variables, and write files.
 
+### Help
+
+```bash
+deno run --allow-env --allow-net --allow-write main.ts --help
+```
+
+### Example with output
+
 ```bash
 deno run --allow-env --allow-net --allow-write main.ts <github_username>
 ```
