@@ -94,8 +94,8 @@ will create the directory if it does not exist.
   `GITHUB_TOKEN` or `GH_PAT` if provided) and uses `octokit.paginate` to fetch
   all starred repositories for a user. The response is validated with the Zod
   schema in `types.ts`.
-- `lib/repo-to-markdown.ts` transforms validated repository objects into Markdown
-  sections grouped by year.
+- `lib/repo-to-markdown.ts` transforms validated repository objects into
+  Markdown sections grouped by year.
 - `main.ts` orchestrates the process: it fetches data, writes the JSON file,
   groups repositories by year, and writes the Markdown report.
 
