@@ -29,11 +29,31 @@ export function starredReposToMarkdownGroupedByYear(
   return markdown;
 }
 
+export function deepCopy<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+export function sortReposByPushedAtDescending<T extends { pushed_at: string }>(
+  repos: T[],
+): T[] {
+  const deepCopyRepos = deepCopy(repos);
+  deepCopyRepos.sort((a, b) => {
+    const dateA = new Date(a.pushed_at);
+    const dateB = new Date(b.pushed_at);
+    return dateB.getTime() - dateA.getTime();
+  });
+  return deepCopyRepos;
+}
+
 export function writeMarkdownFileGroupedByYear(
   username: string,
   data: StarredRepo[],
 ) {
-  const dataByYear = reposGroupByPushedToInYear(data);
+  const dataByYear = reposGroupByPushedToInYear(
+    sortReposByPushedAtDescending(
+      deepCopy(data),
+    ),
+  );
   let text = markdownGroupedByYearHeaderTitle(username);
   const years = Object.keys(dataByYear).map(Number).sort((a, b) => b - a);
 
@@ -52,6 +72,7 @@ export function writeMarkdownFileGroupedByYear(
       dataByYear[year.toString()],
     );
   }
+
   Deno.writeFileSync(
     `deno-starshower_output/Starred_Repos.md`,
     new TextEncoder().encode(text),
