@@ -16,7 +16,7 @@ export function repoToMarkdown(starredRepo: StarredRepo): string {
   }
 
   markdown += `**Stars:** ${stars}\\\n` +
-    `**Last Pushed:** ${new Date(pushed_at).toLocaleDateString()}\n\n` +
+    `**Last Pushed:** ${new Date(pushed_at).toISOString().split("T")[0]}\n\n` +
     `---\n\n`;
 
   return markdown;
